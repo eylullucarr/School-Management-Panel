@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="https://unpkg.com/primeflex@^3/primeflex.css">
+<p></p>
+<p></p>
+<p-card>
+
+    <div class="flex justify-content-between">
+        <h2>Class</h2>
+        <button pButton pRipple type="button" label="Add Class" class="p-button-outlined"
+            (click)="showAddModal()"></button>
+
+    </div>
+    <p></p>
+    <p-table [value]="classes" [paginator]="true" [rows]="5">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Name</th>
+                <th>Capacity</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-classes>
+            <tr>
+                <td>{{ classes.name }}</td>
+                <td>{{ classes.capacity }}</td>
+
+                <td>
+                    <p-button label="Edit" styleClass="p-button-outlined p-button-warning"
+                        (click)="showEditModal(classes)"></p-button>
+                </td>
+
+                <td>
+                    <p-button label="Delete" styleClass="p-button-outlined p-button-danger"
+                        (click)="deleteClass(classes)"></p-button>
+                </td>
+
+            </tr>
+        </ng-template>
+    </p-table>
+</p-card>
+
+<app-add-edit-panel [displayAddEditModal]="displayAddEditModal" [selectedClass]="selectedClass"
+    (clickClose)="hideAddModal($event)" (clickAddEdit)="saveOrUpdateClassToList($event)">
+    <!-- clickclose'tan true gelince hideaddmodal'a eventine true girer 
+      =>user.compenent.ts -->
+    <!-- clickaddeditten verileri gelince eventa verileri atar. 
+      => user.compenent.ts-->
+
+</app-add-edit-panel>
+
+<p-confirmDialog header="Delete"></p-confirmDialog>

@@ -1,0 +1,34 @@
+<p-dialog header="{{ modalType }} Student" [(visible)]="displayAddEditModal" [modal]="true" [style]="{ width: '50vw' }"
+    [draggable]="false" [resizable]="false" (onHide)="closeModal()">
+    <form [formGroup]="studentForm" class="student-form">
+        <div class="field">
+            <label class="block" for="name">Name:</label>
+            <input type="text" pInputText id="name" formControlName="name" />
+            <small class="p-error block" *ngIf="
+            studentForm.controls['name'].invalid &&
+            studentForm.controls['name'].dirty
+            ">Field is required</small>
+        </div>
+        <div class="field">
+            <label class="block" for="surname">Surname:</label>
+            <input type="text" pInputText id="surname" formControlName="surname" />
+            <small class="p-error block" *ngIf="
+            studentForm.controls['surname'].invalid &&
+            studentForm.controls['surname'].dirty
+            ">Field is required</small>
+        </div>
+        <div class="field">
+            <label class="block" for="tc">Tc:</label>
+            <input type="text" pInputText id="job" formControlName="tc" />
+            <small class="p-error block" *ngIf="
+            studentForm.controls['tc'].invalid &&
+            studentForm.controls['tc'].dirty
+              ">Field is required</small>
+        </div>
+    </form>
+    <ng-template pTemplate="footer">
+        <p-button (click)="closeModal()" label="Cancel" styleClass="p-button-text"></p-button>
+        <p-button (click)="addEditStudent()" label="{{ modalType }}" [disabled]="studentForm.invalid"></p-button>
+    </ng-template>
+</p-dialog>
+<p-toast position="bottom-center"></p-toast>`
